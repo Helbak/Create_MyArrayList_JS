@@ -1,0 +1,8 @@
+describe("calculate tests", () => {
+    it(`test value 1 and 2`, function () {
+        const act = calculate(1, 2);
+        const exp = 3;
+        assert.equal(act,exp);
+    });
+
+ });
