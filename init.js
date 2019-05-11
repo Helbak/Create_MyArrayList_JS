@@ -1,19 +1,38 @@
 // const array = [1,2,3,4,5];
 // const nameOfArray = "ara";
-const myArray = {
-    nameAr: nameOfArray,
-    arr: array,
-    funcCheckParam: checkParamAsArray(arr),
+var myArray = {
+    name: null,
+    arr: null,
+    funcCheckParamArray: checkParamAsArray(arr),
+    funcSetArray: setArray() (arr) ,
+    funcSetName: setName(name),
     funcGetSize: getSize(arr),
-    funcDoPop: doPop(arr),
+    funcDoPop: doPop(arr, "justPop"),
     funcDoPush: doPush(arr, newElement),
 
 }
 
-function checkParamAsArray(arr) {
-    // if(arr.length>=0 || isArray(arr)){
-    if (arr.constructor === Array) {
+function setName(name) {
+    if (name === String(name)) {
+        this.name = name;
+        return name;
+    }
+    return false;
+}
 
+function setArray(arr) {
+    if (checkParamAsArray(arr) == true) {
+        this.arr = arr;
+        return arr;
+    }
+    return false;
+}
+
+function checkParamAsArray(arr) {
+    if(arr==null){
+        return  false;
+    }
+    if (arr.constructor === Array ) {
         return true;
     }
     return false;
@@ -34,23 +53,36 @@ function getSize(arr) {
 
 function doPop(arr, task) {
 
-    if (arr.funcGetSize == 0) {
-        return undefined;
+    if (arr.length == 0) {
+        return false;
     }
     const firstDead = arr[0];
-    arrayTemp = [arr.funcGetSize - 1];
-    for (let i = 1; i < arr.funcGetSize; i++) {
+
+    let arrayTemp = [];
+
+    for (let i = 1; i < arr.length; i++) {
         arrayTemp[i - 1] = arr[i];
         delete arr[i];
+
     }
+    // delete arr;
+
+    arrBack = [];
     for (let i = 0; i < arrayTemp.length; i++) {
-        arr[i] = arrayTemp[i];
+        arrBack[i] = arrayTemp[i];
         delete arrayTemp[i];
     }
-    if(task = "return popedArray"){
-        return arr;
+    if (task = "forTest") {
+        const backFromDoPop = {
+            ar : arrBack,
+            size : arrBack.length,
+            first : firstDead,
+        }
+        return backFromDoPop;
     }
-    return firstDead;
+    if(task = "justPop") {
+        return firstDead;
+    }
 }
 
 
