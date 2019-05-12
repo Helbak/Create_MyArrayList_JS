@@ -246,8 +246,8 @@ describe(" test funcGetSize", () => {
     });
     it(`test Splice (Array int)`, function () {
         myArray.doSetArray([1, 20, 300, 4000, 50000]);
-        const act = myArray.doSplice(2,3);
-        const exp = [1, 20];
+        const act = myArray.doSplice(2,2);
+        const exp = [1, 20, 50000];
         assert.deepEqual(act, exp);
     });
     it(`test Splice (amount+pos>length)`, function () {
@@ -263,4 +263,69 @@ describe(" test funcGetSize", () => {
         assert.deepEqual(act, exp);
     });
 
+});
+describe(" test funcGetSize", () => {
+    beforeEach(() => {
+        console.log('running before each test')
+    })
+    it(`test Remove (Array int)`, function () {
+        myArray.doSetArray([1,2,3,4,5]);
+        const act = myArray.doRemove(1);
+        const exp = [1, 3,4,5];
+        assert.deepEqual(act, exp);
+    });
+    it(`test Remove (Array String)`, function () {
+        myArray.doSetArray(['a','b','c','d','e']);
+        const act = myArray.doRemove(0);
+        const exp = ['b', 'c','d','e'];
+        assert.deepEqual(act, exp);
+    });
+    it(`test Remove (Array Objects)`, function () {
+        myArray.doSetArray(arrObj);
+        const act = myArray.doRemove(0);
+        const exp = [obj2];
+        assert.deepEqual(act, exp);
+    });
+    it(`test Remove (Array Empty)`, function () {
+        myArray.doSetArray([]);
+        const act = myArray.doRemove(0);
+        const exp = false;
+        assert.deepEqual(act, exp);
+    });
+
+});
+describe(" test funcGetSize", () => {
+beforeEach(() => {
+    console.log('running before each test')
+})
+it(`test toString (Array int)`, function () {
+    myArray.doSetArray([1,2,3,4,5]);
+    const act = myArray.doToString();
+    const exp = '12345';
+    assert.deepEqual(act, exp);
+});
+    it(`test toString (Array String)`, function () {
+        myArray.doSetArray(['a', 'b', 'c', 'd', 'e', 'f']);
+        const act = myArray.doToString();
+        const exp = 'abcdef';
+        assert.deepEqual(act, exp);
+    });
+    it(`test toString (Array String & int)`, function () {
+        myArray.doSetArray(['a', 'b', 'c', 'd', 'e', 1000]);
+        const act = myArray.doToString();
+        const exp = 'abcde1000';
+        assert.deepEqual(act, exp);
+    });
+    it(`test toString (Array objects)`, function () {
+        myArray.doSetArray(arrObj);
+        const act = myArray.doToString();
+        const exp = '[object Object]';
+        assert.deepEqual(act, exp);
+    });
+    it(`test toString (Array Empty)`, function () {
+        myArray.doSetArray([]);
+        const act = myArray.doToString();
+        const exp = '';
+        assert.deepEqual(act, exp);
+    });
 });

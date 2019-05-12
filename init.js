@@ -1,6 +1,6 @@
 const myArray = {
     /*
-remove
+
 toString
      */
     array: [1, 2, 3, 4],
@@ -99,7 +99,28 @@ doSplice: function (pos, amount){
     // }
     this.array.length=this.array.length-amount;
     return this.array;
-}
+},
+    //Удаление элементов из массива по индексу
+    doRemove: function (index) {
+        if(this.doGetSize()<=0){
+            return false;
+        }
+        // delete this.array[index];
+        for(let i = index; i<this.doGetSize()-1;i++){
+            this.array[i]=this.array[i+1];
+        }
+        delete this.array[this.doGetSize()-1];
+        // this.array.length=this.doGetSize()-1;
+        return this.array;
+    },
+    doToString: function () {
+
+        let result = '';
+        for(let i=0; i<this.doGetSize(); i++){
+            result=result+String(this.array[i]);
+        }
+        return result;
+    }
 
 
 
